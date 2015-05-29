@@ -1,0 +1,8 @@
+{
+  "name": "breakthrough-javascript-02",
+  "private": true,
+  "dependencies": {
+    "jquery": "*"
+  },
+  "devDependencies": {}
+}
