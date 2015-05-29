@@ -15,18 +15,29 @@ Modal::initialize = (el) ->
 
 Modal::handleEvents = ->
   @$el.on 'click', (e) =>
-    console.log e
     @show e
+    return false
+
+  @$close.on 'click', (e) =>
+    @hide e
+    return false
+
+  @$overlay.on 'click', (e) =>
+    @hide e
     return false
 
 Modal::show = (e) ->
   $target = $ e.currentTarget
   src = $target.attr 'href'
-  console.log src
+
   @$contents.html '<img src="' + src + '"/>'
   @$container.fadeIn()
   @$overlay.fadeIn()
   @index = $target.data 'index'
   return false
+
+Modal::hide = (e) ->
+  @$container.fadeOut()
+  @$overlay.fadeOut()
 
 modal = new Modal $ '#modal-thumb a'
