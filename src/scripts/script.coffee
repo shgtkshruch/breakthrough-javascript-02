@@ -26,6 +26,37 @@ Modal::handleEvents = ->
     @hide e
     return false
 
+  @$next.on 'click', (e) =>
+    @next e
+    return false
+
+  @$prev.on 'click', (e) =>
+    @prev e
+    return false
+
+Modal::slide = (index) ->
+  @$contents
+    .find 'img'
+    .fadeOut
+      complete: ->
+        src = $ '[data-index="' + index + '"]'
+          .find 'img'
+          .attr 'src'
+        $ @
+          .attr 'src', src
+          .fadeIn()
+
+Modal::countChange = (num, index, len) ->
+  (index + num + len) % len
+
+Modal::next = ->
+  @index = @countChange 1, @index, @$el.length
+  @slide @index
+
+Modal::prev = ->
+  @index = @countChange -1, @index, @$el.length
+  @slide @index
+
 Modal::show = (e) ->
   $target = $ e.currentTarget
   src = $target.attr 'href'
