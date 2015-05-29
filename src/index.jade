@@ -1,0 +1,43 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset='UTF-8')
+    title breakthrough-javascript-02
+    meta(content='IE=edge', http-equiv='X-UA-Compatible')
+    meta(content='author', name='author')
+    meta(content='description', name='description')
+    meta(content='keywords', name='keywords')
+    meta(content='width=device-width, initial-scale=1' name='viewport')
+    meta(content='telephone=no', name='format-detection')
+
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css', media='all')
+    link(rel='stylesheet', href='styles/style.css', media='all')
+  body
+    #container
+      ul#modal-thumb
+        - for (var i = 0; i < 3; i++)
+          li
+            a(href="images/photo-0#{i+1}.jpg" data-index="#{i}")
+              img.img-thumbnail(src="images/photo-0#{i+1}.jpg" alt="" witdh="160")
+
+    #modal
+      #modal-container
+        #modal-contents
+        #modal-close
+          span(aria-hidden="true").glyphicon.glyphicon-remove
+        #modal-prev
+          span(aria-hidden="true").glyphicon.glyphicon-chevron-left
+        #modal-next
+          span(aria-hidden="true").glyphicon.glyphicon-chevron-right
+
+    #modal-overlay
+
+    // build:js scripts/vendor.js
+    // bower:js
+    script(src='../bower_components/jquery/dist/jquery.js')
+    // endbower
+    // endbuild
+
+    // build:js scripts/main.js
+    script(src='scripts/script.js')
+    // endbuild
