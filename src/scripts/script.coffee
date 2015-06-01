@@ -5,31 +5,31 @@ Modal::initialize = (el) ->
   @$el = el
   @$container = $ '#modal'
   @$contents = $ '#modal-contents'
-  @$close = $ '#modal-close'
-  @$next = $ '#modal-next'
-  @$prev = $ '#modal-prev'
   @$overlay = $ '#modal-overlay'
+
+  @$parents = @$el.parents 'ul'
+
   @$window = $ window
   @handleEvents()
 
 Modal::handleEvents = ->
-  @$el.on 'click', (e) =>
+  @$parents.on 'click', 'a', (e) =>
     @show e
-    return false
-
-  @$close.on 'click', (e) =>
-    @hide e
     return false
 
   @$overlay.on 'click', (e) =>
     @hide e
     return false
 
-  @$next.on 'click', (e) =>
+  @$container.on 'click', '#modal-close', (e) =>
+    @hide e
+    return false
+
+  @$container.on 'click', '#modal-next', (e) =>
     @next e
     return false
 
-  @$prev.on 'click', (e) =>
+  @$container.on 'click', '#modal-prev', (e) =>
     @prev e
     return false
 
@@ -87,3 +87,16 @@ Modal::resize = ->
 
 
 modal = new Modal $ '#modal-thumb a'
+
+$ '#more-btn'
+  .on 'click', ->
+    html = '<li><a href="images/photo-04.jpg" data-index=3>\
+    <img alt="" src="images/photo-04.jpg" width="160" class="img-thumbnail">\
+    </a></li>'
+    $ html
+      .appendTo $ '#modal-thumb'
+      .hide()
+      .fadeIn()
+    $ @
+      .fadeOut()
+    modal.$el = $ '#modal-thumb a'
