@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>breakthrough-javascript-02</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="author" name="author">
+    <meta content="description" name="description">
+    <meta content="keywords" name="keywords">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="styles/style.css" media="all">
+  </head>
+  <body>
+    <div id="container">
+      <ul id="modal-thumb">
+        <li><a href="images/photo-01.jpg" data-index="0"><img src="images/photo-01.jpg" alt="" witdh="160" class="img-thumbnail"></a></li>
+        <li><a href="images/photo-02.jpg" data-index="1"><img src="images/photo-02.jpg" alt="" witdh="160" class="img-thumbnail"></a></li>
+        <li><a href="images/photo-03.jpg" data-index="2"><img src="images/photo-03.jpg" alt="" witdh="160" class="img-thumbnail"></a></li>
+      </ul>
+      <button id="more-btn" type="button" class="btn btn-primary">もっと見る</button>
+    </div>
+    <div id="modal">
+      <div id="modal-container">
+        <div id="modal-contents"></div>
+        <div id="modal-close"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></div>
+        <div id="modal-prev"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></div>
+        <div id="modal-next"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></div>
+      </div>
+    </div>
+    <div id="modal-overlay"></div>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
