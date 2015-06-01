@@ -10,7 +10,6 @@ Modal::initialize = (el) ->
   @$prev = $ '#modal-prev'
   @$overlay = $ '#modal-overlay'
   @$window = $ 'window'
-  @index = 0
   @handleEvents()
 
 Modal::handleEvents = ->
@@ -34,6 +33,22 @@ Modal::handleEvents = ->
     @prev e
     return false
 
+Modal::show = (e) ->
+  $target = $ e.currentTarget
+  src = $target.attr 'href'
+
+  @$contents.html '<img src="' + src + '"/>'
+  @$container.fadeIn()
+  @$overlay.fadeIn()
+
+  index = $target.data 'index'
+  @countChange = @createCounter index, @$el.length
+  return false
+
+Modal::hide = (e) ->
+  @$container.fadeOut()
+  @$overlay.fadeOut()
+
 Modal::slide = (index) ->
   @$contents
     .find 'img'
@@ -46,29 +61,15 @@ Modal::slide = (index) ->
           .attr 'src', src
           .fadeIn()
 
-Modal::countChange = (num, index, len) ->
-  (index + num + len) % len
+Modal::createCounter = (index, len) ->
+  (num) ->
+    index = (index + num + len) % len
 
 Modal::next = ->
-  @index = @countChange 1, @index, @$el.length
-  @slide @index
+  @slide @countChange 1
 
 Modal::prev = ->
-  @index = @countChange -1, @index, @$el.length
-  @slide @index
+  @slide @countChange -1
 
-Modal::show = (e) ->
-  $target = $ e.currentTarget
-  src = $target.attr 'href'
-
-  @$contents.html '<img src="' + src + '"/>'
-  @$container.fadeIn()
-  @$overlay.fadeIn()
-  @index = $target.data 'index'
-  return false
-
-Modal::hide = (e) ->
-  @$container.fadeOut()
-  @$overlay.fadeOut()
 
 modal = new Modal $ '#modal-thumb a'
