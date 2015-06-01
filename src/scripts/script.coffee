@@ -9,7 +9,7 @@ Modal::initialize = (el) ->
   @$next = $ '#modal-next'
   @$prev = $ '#modal-prev'
   @$overlay = $ '#modal-overlay'
-  @$window = $ 'window'
+  @$window = $ window
   @handleEvents()
 
 Modal::handleEvents = ->
@@ -32,6 +32,9 @@ Modal::handleEvents = ->
   @$prev.on 'click', (e) =>
     @prev e
     return false
+
+  @$window.on 'load resize', =>
+    @resize()
 
 Modal::show = (e) ->
   $target = $ e.currentTarget
@@ -70,6 +73,17 @@ Modal::next = ->
 
 Modal::prev = ->
   @slide @countChange -1
+
+Modal::resize = ->
+  w = @$window.width()
+  if w < 640
+    @$container.css
+      "width": "320"
+      "height": "213"
+  else
+    @$container.css
+      "width": "750"
+      "height": "500"
 
 
 modal = new Modal $ '#modal-thumb a'
